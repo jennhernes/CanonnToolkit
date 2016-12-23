@@ -1,6 +1,7 @@
 # CanonnToolkit
 
-This is the Canonn Toolkit. Included in this toolkit is the following:
+This is the Canonn Toolkit. Currently, it is only for Windows.
+Included in this toolkit is the following:
 
 ## Bearing calculator
 
