@@ -26,4 +26,4 @@ This is the Canonn Toolkit. Included in this toolkit is the following:
 * notes are saved into a folder named "Notebook"
     - this folder is created where your exe file is located
     
-Grab some whiskey and biscuits, and go decipher the galaxy!
+### Grab some whiskey and biscuits, and go decipher the galaxy!
