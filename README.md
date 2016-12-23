@@ -25,5 +25,13 @@ This is the Canonn Toolkit. Included in this toolkit is the following:
 * use this section to keep notes about anything
 * notes are saved into a folder named "Notebook"
     - this folder is created where your exe file is located
+
+---
+
+## Installation 
+
+Download the rar file found here or [on Google Drive](https://drive.google.com/open?id=0Bx6CgJ8SFXxbQW9meEZJajV1c1U).
+Unzip it into a location where the program will have write access (so that notes created in the Notebook can be saved!)
+Start using the toolkit to solve the galaxy's mysteries!
     
 ### Grab some whiskey and biscuits, and go decipher the galaxy!
