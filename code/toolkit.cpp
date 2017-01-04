@@ -28,12 +28,36 @@ double CalculateBearing(double lat1, double lon1, double lat2, double lon2) {
 }
 
 
+// Stores the encrypted text into the first given char *
+void EncryptCipherText(char *Result, char *text, int length, char *alphabet) {
+	for (int i = 0; i < length; i++) {
+		if ((text[i] - ASCII_OFFSET) >= 0 && 
+			(text[i] - ASCII_OFFSET) < ALPHABET_LENGTH) {
+			Result[i] = alphabet[(int)text[i] - ASCII_OFFSET];
+		} else {
+			Result[i] = text[i];
+		}
+	}
+}
+
+
 // Stores the decrypted text into the first given char *
 void DecryptCipherText(char *Result, char *text, int length, char *alphabet) {
 	for (int i = 0; i < length; i++) {
 		if ((text[i] - ASCII_OFFSET) >= 0 && 
 			(text[i] - ASCII_OFFSET) < ALPHABET_LENGTH) {
-			Result[i] = alphabet[(int)text[i] - ASCII_OFFSET];
+			int j = 0;
+			while (TRUE) {
+				if (text[i] == alphabet[j]) {
+					Result[i] = char(j + ASCII_OFFSET);
+					break;
+				}
+				if (j >= ALPHABET_LENGTH) {
+					Result[i] = text[i];
+					break;
+				}
+				j++;
+			}
 		} else {
 			Result[i] = text[i];
 		}
@@ -1139,14 +1163,28 @@ void ConvertMorseToAscii(char *Result, char *given) {
 			Result[i] = '-';
 		} else if (strcmp(token, "-..-.") == 0) {
 			Result[i] = '/';
-		} else if (strcmp(token, "-.--.-") == 0) {
+		} else if (strcmp(token, "-.--.") == 0) {
 			Result[i] = '(';
-		} else if (strcmp(token, ".--.-.") == 0) {
+		} else if (strcmp(token, ".-..-.") == 0) {
 			Result[i] = '\"';
 		} else if (strcmp(token, ".--.-.") == 0) {
 			Result[i] = '@';
 		} else if (strcmp(token, "-...-") == 0) {
 			Result[i] = '=';
+		} else if (strcmp(token, "-.-.--") == 0) {
+			Result[i] = '!';
+		} else if (strcmp(token, "-.--.-") == 0) {
+			Result[i] = ')';
+		} else if (strcmp(token, ".-...") == 0) {
+			Result[i] = '&';
+		} else if (strcmp(token, "-.-.-.") == 0) {
+			Result[i] = ';';
+		} else if (strcmp(token, ".-.-.") == 0) {
+			Result[i] = '+';
+		} else if (strcmp(token, "..--.-") == 0) {
+			Result[i] = '_';
+		} else if (strcmp(token, "...-..-") == 0) {
+			Result[i] = '$';
 		} else {
 			Result[i] = ' ';
 		}

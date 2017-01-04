@@ -34,6 +34,8 @@ global_variable Notebook objNotebook;
 
 global_variable HWND hMain;
 
+global_variable bool tabDown = false;
+
 
 void DrawSingleTab(HWND *tab, LPARAM lParam) {
     LPDRAWITEMSTRUCT drawItem = (LPDRAWITEMSTRUCT)lParam;
@@ -235,6 +237,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
             AddTextToWindow(objHome.staticDesc5, objHome.desc5);
             AddTextToWindow(objHome.staticContact, objHome.contact);
             AddTextToWindow(objHome.staticDonate, objHome.donate);
+            AddTextToWindow(objHome.staticUpdate, objHome.updateText);
             EndPaint(hwnd, &ps);
 
         } else if (tabSelected == &tabBearing) {
@@ -440,6 +443,15 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
             SendMessage(objHome.staticDonate, WM_SETFONT, 
                 (WPARAM)fontTiny, 0);
             SetTextColor(hdcStatic, CANONN_WHITE_RGB);
+            SetBkColor(hdcStatic, CANONN_DARKGRAY_RGB);
+
+        } else if ((HWND)lParam == objHome.staticUpdate) {
+            HDC hdcStatic = (HDC)wParam;
+            HFONT fontLink;
+            CreateLinkFont(&fontLink, &hdcStatic);
+            SendMessage(objHome.staticUpdate, WM_SETFONT, 
+                (WPARAM)fontLink, 0);
+            SetTextColor(hdcStatic, CANONN_ORANGE_RGB);
             SetBkColor(hdcStatic, CANONN_DARKGRAY_RGB);
 
         } else if ((HWND)lParam == objBearing.labelStarting) {
@@ -830,7 +842,19 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
                     ConvertMorseToAscii(objMorse.asciiOutput,
                         objMorse.copyUserInput);
 
-                    objNumbers.dataStored = TRUE;
+                    objMorse.dataStored = TRUE;
+                    InvalidateRect(hwnd, NULL, FALSE);
+                }
+
+            } else if ((HWND)lParam == objCipher.buttonEncrypt) {
+
+                if (GetWindowTextLength(objCipher.editInput) > 0) {
+                    SetKey(&objCipher);
+                    SetNewAlphabet(&objCipher);
+                    SetInputText(&objCipher);
+                    EncryptCipherText(objCipher.output, objCipher.input, 
+                        objCipher.inputTextLength, objCipher.newAlphabet);
+                    objCipher.dataStored = TRUE;
                     InvalidateRect(hwnd, NULL, FALSE);
                 }
 
@@ -1107,6 +1131,16 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
                     MessageBox(hwnd, buffer, "Could not open browser.", 
                         MB_OK);
                 }
+            } else if ((HWND)lParam == objHome.staticUpdate) {
+                if (!((int)ShellExecute(NULL, "open", objHome.updateLink, 0, 0, 
+                    SW_SHOW) > 32)) {
+                    char buffer[MAX_ARRAY_LENGTH];
+                    sprintf(buffer, 
+                        "The website (%s) could not be opened.", 
+                        objHome.updateLink);
+                    MessageBox(hwnd, buffer, "Could not open browser.", 
+                        MB_OK);
+                }
             }
 
             return (0);
@@ -1191,7 +1225,9 @@ LRESULT CALLBACK MultiLineWindowProc(HWND hwnd,
     LRESULT Result = DefSubclassProc(hwnd, uMsg, wParam, lParam);
 
     if (uMsg == WM_GETDLGCODE) {
-        Result &= ~DLGC_WANTALLKEYS;
+        if (tabDown) {
+        	Result &= ~DLGC_WANTALLKEYS;
+        }
     }
 
     return (Result);
@@ -1228,7 +1264,7 @@ int CALLBACK WinMain(HINSTANCE hInst,
     SetRect(&rect, 0, 0, CLIENT_WIDTH, CLIENT_HEIGHT);
     AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-    hMain = CreateWindowEx(0, wc.lpszClassName, "Canonn Toolkit  v1.0", 
+    hMain = CreateWindowEx(0, wc.lpszClassName, "Canonn Toolkit  v1.01", 
         WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 
         rect.right-rect.left, rect.bottom-rect.top, NULL, NULL, hInst, NULL);
 
@@ -1240,8 +1276,44 @@ int CALLBACK WinMain(HINSTANCE hInst,
     UpdateWindow(hMain);
 
     MSG msg;
+    // while (GetMessage(&msg, 0, 0, 0)) {
+    // 	if (msg.message == WM_KEYDOWN) {
+    // 		if (msg.wParam == VK_SHIFT) {
+    // 			shiftDown = TRUE;
+    // 		} else if (msg.wParam == VK_TAB) {
+    // 		} else {
+	   //          TranslateMessage(&msg);
+	   //          DispatchMessage(&msg);    			
+    // 		}
+    // 	} else if (msg.message == WM_KEYUP) {
+    // 		if (msg.wParam == VK_SHIFT) {
+    // 			shiftDown = FALSE;
+    // 		} else if (msg.wParam == VK_TAB) {
+    // 			HWND hFocus = GetFocus();
+    // 			if (hFocus) {
+    // 				HWND hNext = GetNextDlgTabItem(GetParent((HWND)hFocus), (HWND)hFocus, shiftDown);
+			 //    	SetFocus(hNext);
+    // 			}
+    // 		} else {
+	   //          TranslateMessage(&msg);
+	   //          DispatchMessage(&msg);
+    //     	}
+    // 	} else {
+    //         TranslateMessage(&msg);
+    //         DispatchMessage(&msg);
+    //     }
+    // }
+
+
     while (GetMessage(&msg, 0, 0, 0)) {
-        if (!IsDialogMessage(hMain, &msg)) {
+    	if (msg.wParam == VK_TAB) {
+    		if (msg.message == WM_KEYDOWN) {
+    			tabDown = TRUE;
+    		} else if (msg.message == WM_KEYUP) {
+    			tabDown = FALSE;
+    		}
+    	}
+    	if (!IsDialogMessage(hMain, &msg)) {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }

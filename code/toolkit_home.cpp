@@ -152,15 +152,13 @@ LRESULT PaintHomeWindow(HWND *hPWnd, Home *objHome) {
     GetWindowRect(objHome->staticDonate, &leftRect);
     AdjustRectToWindow(&leftRect, hPWnd);
 
-    height = leftRect.bottom-leftRect.top;
-    int vspacing = (height-objHome->buttonHeight)/2;
     objHome->bitmapDonate = (HBITMAP)LoadImage(NULL, 
         objHome->donateBitmapLocation, IMAGE_BITMAP, 0, 0, 
         LR_CREATEDIBSECTION | LR_LOADFROMFILE);
     if (objHome->bitmapDonate != NULL) {
         objHome->buttonDonate = CreateWindow("BUTTON", "Donate", 
             baseStyle | WS_TABSTOP | BS_BITMAP,
-            XEND-objHome->buttonWidth, leftRect.top+vspacing, 
+            XEND-objHome->buttonWidth, leftRect.top, 
             objHome->buttonWidth, objHome->buttonHeight, 
             *hPWnd, (HMENU)IDC_BUTTON_DONATE, NULL, NULL);
         if (objHome->buttonDonate != NULL) {
@@ -170,7 +168,7 @@ LRESULT PaintHomeWindow(HWND *hPWnd, Home *objHome) {
     } else {
         objHome->buttonDonate = CreateWindow("BUTTON", "Donate", 
             baseStyle | WS_TABSTOP | BS_PUSHBUTTON,
-            XEND-objHome->buttonWidth, leftRect.top+vspacing, 
+            XEND-objHome->buttonWidth, leftRect.top, 
             objHome->buttonWidth, objHome->buttonHeight, 
             *hPWnd, (HMENU)IDC_BUTTON_DONATE, NULL, NULL);
     }
@@ -179,7 +177,19 @@ LRESULT PaintHomeWindow(HWND *hPWnd, Home *objHome) {
         return(Result);
     }
 
+    GetWindowRect(objHome->staticDonate, &leftRect);
+    AdjustRectToWindow(&leftRect, hPWnd);
+    GetWindowRect(objHome->buttonDonate, &topRect);
+    AdjustRectToWindow(&topRect, hPWnd);
 
+    objHome->staticUpdate = CreateWindowEx(0, "STATIC", "", 
+        baseStyle | SS_LEFT | SS_NOTIFY, 
+        leftRect.right, topRect.bottom+10, width, EDITHEIGHT, 
+        *hPWnd, (HMENU)IDC_STATIC_UPDATE, GetModuleHandle(NULL), NULL);
+    if (objHome->staticUpdate == NULL) {
+        Result = -1;
+        return(Result);
+    }
 
     return (Result);
 }
@@ -219,6 +229,9 @@ LRESULT DestroyHomeWindow(Home *objHome) {
         Result = -1;
     }
     if(!DestroyWindow(objHome->staticDonate)) {
+        Result = -1;
+    }
+    if(!DestroyWindow(objHome->staticUpdate)) {
         Result = -1;
     }
 

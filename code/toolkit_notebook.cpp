@@ -164,7 +164,7 @@ LRESULT PaintNotebookWindow(HWND *hPWnd, Notebook *objNotebook) {
     AdjustRectToWindow(&topRect, hPWnd);
 
     objNotebook->editNotes = CreateWindowEx(0, "EDIT", "",
-        baseStyle | WS_TABSTOP | WS_VSCROLL | ES_AUTOVSCROLL | ES_MULTILINE | ES_LEFT, 
+        baseStyle | WS_TABSTOP | WS_VSCROLL | ES_AUTOVSCROLL | ES_MULTILINE | ES_LEFT | ES_WANTRETURN, 
         topRect.left, topRect.bottom+10, 
         XEND-topRect.left, YEND-topRect.bottom-10,
         *hPWnd, (HMENU)IDC_EDIT_NOTES, GetModuleHandle(NULL), NULL);

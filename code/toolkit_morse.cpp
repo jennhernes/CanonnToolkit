@@ -59,7 +59,7 @@ LRESULT PaintMorseWindow(HWND *hPWnd, Morse *objMorse) {
     AdjustRectToWindow(&topRect, hPWnd);
 
     objMorse->editMorse = CreateWindowEx(0, "EDIT", "", 
-        baseStyle | WS_TABSTOP | WS_VSCROLL | ES_AUTOVSCROLL | ES_MULTILINE | ES_LEFT, 
+        baseStyle | WS_TABSTOP | WS_VSCROLL | ES_AUTOVSCROLL | ES_MULTILINE | ES_LEFT | ES_WANTRETURN, 
         topRect.left, topRect.bottom+10, TEXTBOXWIDTH, YEND-topRect.bottom-10, 
         *hPWnd, (HMENU)IDC_EDIT_MORSEINPUT, GetModuleHandle(NULL), NULL);
     if (objMorse->editMorse == NULL) {

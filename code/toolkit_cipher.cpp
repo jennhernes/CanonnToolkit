@@ -51,12 +51,13 @@ void SetInputText(Cipher *objCipher) {
     if (objCipher->inputTextLength > MAX_ARRAY_LENGTH-1) {
         objCipher->inputTextLength = MAX_ARRAY_LENGTH-1;
     }
+    objCipher->inputTextLength++;
     GetWindowText(objCipher->editInput, objCipher->input, 
-    	objCipher->inputTextLength+1);
+    	objCipher->inputTextLength);
     for (int i = 0; i < objCipher->inputTextLength; i++) {
     	objCipher->input[i] = (char)toupper(objCipher->input[i]);
     }
-    objCipher->input[objCipher->inputTextLength] = '\0';
+    objCipher->input[objCipher->inputTextLength-1] = '\0';
 }
 
 
@@ -83,9 +84,6 @@ LRESULT PaintCipherWindow(HWND *hPWnd, Cipher *objCipher) {
         return(Result);
     }
 
-    GetWindowRect(objCipher->labelKeyword, &rect);
-    AdjustRectToWindow(&rect, hPWnd);
-
     GetWindowRect(objCipher->labelKeyword, &topRect);
     AdjustRectToWindow(&topRect, hPWnd);
 
@@ -102,23 +100,17 @@ LRESULT PaintCipherWindow(HWND *hPWnd, Cipher *objCipher) {
         SendMessage(objCipher->editKey, WM_SETFONT, (WPARAM)fontDefault, 0);
     }
 
-    GetWindowRect(objCipher->editKey, &rect);
-    AdjustRectToWindow(&rect, hPWnd);
-
     GetWindowRect(objCipher->labelKeyword, &leftRect);
     AdjustRectToWindow(&leftRect, hPWnd);
 
     objCipher->labelShift = CreateWindowEx(0, "STATIC", "", 
         baseStyle | SS_LEFT, 
-        leftRect.right+30, leftRect.top, TEXTBOXWIDTH, BUTTONHEIGHT, 
+        leftRect.right+30, leftRect.top, 60, BUTTONHEIGHT, 
         *hPWnd, (HMENU)IDC_LABEL_SHIFT, GetModuleHandle(NULL), NULL);
     if (objCipher->labelShift == NULL) {
         Result = -1;
         return(Result);
     }
-
-    GetWindowRect(objCipher->labelShift, &rect);
-    AdjustRectToWindow(&rect, hPWnd);
 
     GetWindowRect(objCipher->labelShift, &topRect);
     AdjustRectToWindow(&topRect, hPWnd);
@@ -146,8 +138,23 @@ LRESULT PaintCipherWindow(HWND *hPWnd, Cipher *objCipher) {
             (WPARAM)objCipher->baseSelected, (LPARAM)0);
     }
 
-    GetWindowRect(objCipher->comboShift, &rect);
-    AdjustRectToWindow(&rect, hPWnd);
+    GetWindowRect(objCipher->labelShift, &leftRect);
+    AdjustRectToWindow(&leftRect, hPWnd);
+
+    objCipher->buttonEncrypt = CreateWindow("BUTTON", "OK", 
+        baseStyle | WS_TABSTOP | BS_PUSHBUTTON,
+        XEND-75, leftRect.top, 75, BUTTONHEIGHT,
+        *hPWnd, (HMENU)IDC_BUTTON_ENCRYPT, GetModuleHandle(NULL), NULL);
+    if (objCipher->buttonEncrypt == NULL) {
+        Result = -1;
+        return(Result);
+    } else {
+        hdc = GetDC(objCipher->buttonEncrypt);
+        CreateDefaultFont(&fontDefault, &hdc);
+        SendMessage(objCipher->buttonEncrypt, WM_SETFONT, 
+            (WPARAM)fontDefault, 0);
+        SetWindowText(objCipher->buttonEncrypt, "Encrypt");
+    }
 
     GetWindowRect(objCipher->comboShift, &leftRect);
     AdjustRectToWindow(&leftRect, hPWnd);
@@ -167,9 +174,6 @@ LRESULT PaintCipherWindow(HWND *hPWnd, Cipher *objCipher) {
         SetWindowText(objCipher->buttonDecrypt, "Decrypt");
     }
 
-    GetWindowRect(objCipher->buttonDecrypt, &rect);
-    AdjustRectToWindow(&rect, hPWnd);
-
     GetWindowRect(objCipher->editKey, &topRect);
     AdjustRectToWindow(&topRect, hPWnd);
 
@@ -182,14 +186,11 @@ LRESULT PaintCipherWindow(HWND *hPWnd, Cipher *objCipher) {
         return(Result);
     }
 
-    GetWindowRect(objCipher->labelInput, &rect);
-    AdjustRectToWindow(&rect, hPWnd);
-
     GetWindowRect(objCipher->labelInput, &topRect);
     AdjustRectToWindow(&topRect, hPWnd);
 
     objCipher->editInput = CreateWindowEx(0, "EDIT", "", 
-        baseStyle | WS_TABSTOP | WS_VSCROLL | ES_AUTOVSCROLL | ES_MULTILINE | ES_LEFT, 
+        baseStyle | WS_TABSTOP | WS_VSCROLL | ES_AUTOVSCROLL | ES_MULTILINE | ES_LEFT | ES_WANTRETURN, 
         topRect.left, topRect.bottom+10, TEXTBOXWIDTH, YEND-topRect.bottom-10, 
         *hPWnd, (HMENU)IDC_EDIT_CIPHERTEXT, GetModuleHandle(NULL), NULL);
     if (objCipher->editInput == NULL) {
@@ -203,9 +204,6 @@ LRESULT PaintCipherWindow(HWND *hPWnd, Cipher *objCipher) {
         	(WPARAM)fontDefault, 0);
         SendMessage(objCipher->editInput, EM_SETLIMITTEXT, MAX_ARRAY_LENGTH, 0);
     }
-
-    GetWindowRect(objCipher->editInput, &rect);
-    AdjustRectToWindow(&rect, hPWnd);
 
     if (objCipher->dataStored) {
         char buffer[MAX_ARRAY_LENGTH];
@@ -231,9 +229,6 @@ LRESULT PaintCipherWindow(HWND *hPWnd, Cipher *objCipher) {
         Result = -1;
         return(Result);
     }
-
-    GetWindowRect(objCipher->labelOutput, &rect);
-    AdjustRectToWindow(&rect, hPWnd);
 
     GetWindowRect(objCipher->labelOutput, &topRect);
     GetWindowRect(objCipher->editInput, &leftRect);
@@ -271,6 +266,9 @@ LRESULT DestroyCipherWindow(Cipher *objCipher) {
         Result = -1;
     }
     if (!DestroyWindow(objCipher->editInput)) {
+        Result = -1;
+    }
+    if (!DestroyWindow(objCipher->buttonEncrypt)) {
         Result = -1;
     }
     if (!DestroyWindow(objCipher->buttonDecrypt)) {

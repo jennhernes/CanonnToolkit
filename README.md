@@ -1,33 +1,23 @@
 # CanonnToolkit
 
-This is the Canonn Toolkit. Currently, it is only for Windows.
+This is the Canonn Toolkit. The current version is v1.01. It is only for Windows.
 Included in this toolkit is the following:
 
-## Bearing calculator
+### Bearing calculator
 
-* use when you're trying to get from Location A to Location B on a planet
-* simply enter your current lat/long coordinates and the coordinates of your destination to get the bearing you should follow for your journey
+### Numbers to ASCII converter
 
-## Numbers to ASCII converter
+- Note that the numbers for each character must be separated by spaces, eg. 48 45 4c 4c 4f -> HELLO
 
-* convert binary, octal, decimal or hexadecimal numbers to ASCII
-* also contains "Alphabet Swap" option to convert from 1-26 to A-Z
+### Morse to ASCII converter
 
-## Morse to ASCII converter
+### Keyword Cipher
 
-* convert morse code to ASCII
+### Notebook
 
-## Keyword Cipher
+- Note that all files are stored in the Notebook folder
 
-* decipher any text encrypted with a keyword and/or shifted alphabet
-
-## Notebook
-
-* use this section to keep notes about anything
-* notes are saved into a folder named "Notebook"
-    - this folder is created where your exe file is located
-
----
+--------------------------------------------------------------------------------
 
 ## Installation 
 

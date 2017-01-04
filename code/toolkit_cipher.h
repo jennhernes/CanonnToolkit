@@ -11,6 +11,7 @@ struct Cipher {
 	HWND editInput;
 	HWND labelOutput;
 	HWND staticOutput;
+	HWND buttonEncrypt;
 	HWND buttonDecrypt;
 
 	char key[MAX_ARRAY_LENGTH];
