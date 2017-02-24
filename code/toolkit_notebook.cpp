@@ -13,6 +13,74 @@ void ChangeFileLocation(Notebook *objNotebook, char *text) {
     strcat(objNotebook->fileLocation, text);
 }
 
+int WriteCurrentFile(Notebook *objNotebook) {
+    int Result = 0;
+    objNotebook->fileHandle = CreateFile(objNotebook->tmpFileLocation, 
+    GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_ALWAYS,
+    FILE_ATTRIBUTE_NORMAL, NULL);
+
+    if (objNotebook->fileHandle != INVALID_HANDLE_VALUE) {
+        objNotebook->textLength = GetWindowTextLength(objNotebook->editNotes);
+
+        if (objNotebook->textLength > MAX_ARRAY_LENGTH*4-1) {
+            objNotebook->textLength = MAX_ARRAY_LENGTH*4-1;
+        }
+        objNotebook->textLength++;
+
+        GetWindowText(objNotebook->editNotes, objNotebook->fileContents, 
+            objNotebook->textLength);
+        objNotebook->fileContents[objNotebook->textLength-1] = '\0';
+        WriteFile(objNotebook->fileHandle, objNotebook->fileContents, 
+            objNotebook->textLength, NULL, NULL);
+        CloseHandle(objNotebook->fileHandle);
+        Result = MoveFileEx(objNotebook->tmpFileLocation, objNotebook->fileLocation, 
+            MOVEFILE_REPLACE_EXISTING);
+        if (Result == 0) {
+            Result = GetLastError();
+            MessageBox(objNotebook->editNotes, 
+                "Writing to the file has failed.",
+                "Unknown Error", MB_OK);
+            MessageBox(objNotebook->editNotes, objNotebook->fileContents, 
+                "Copy your text and save manually.", MB_OK);
+            return (Result);
+        }
+        return (0);
+
+    } else {
+        MessageBox(objNotebook->editNotes, 
+            "Writing to the file has failed.",
+            "Unknown Error", MB_OK);
+        objNotebook->fileHandle = CreateFile("tmp.txt", 
+            GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, 
+            OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+        if (objNotebook->fileHandle != INVALID_HANDLE_VALUE) {
+            objNotebook->textLength = 
+                GetWindowTextLength(objNotebook->editNotes);
+
+            if (objNotebook->textLength > MAX_ARRAY_LENGTH*4-1) {
+                objNotebook->textLength = MAX_ARRAY_LENGTH*4-1;
+            }
+            GetWindowText(objNotebook->editNotes, objNotebook->fileContents, 
+                objNotebook->textLength+1);
+            WriteFile(objNotebook->fileHandle, objNotebook->fileContents, 
+                objNotebook->textLength, NULL, NULL);
+
+            CloseHandle(objNotebook->fileHandle);
+
+            MessageBox(objNotebook->editNotes, 
+                "File has been saved in the toolkit's main directory, alongside the exe file.",
+                "Temporary File Created", MB_OK);
+            return (1);
+
+        } else {
+            MessageBox(objNotebook->editNotes, objNotebook->fileContents, 
+                "Copy your text and save manually.", MB_OK);
+            return (2);
+        }
+    }
+}
+
 
 LRESULT PaintNotebookWindow(HWND *hPWnd, Notebook *objNotebook) {
     LRESULT Result = 0;
@@ -232,103 +300,8 @@ LRESULT DestroyNotebookWindow(Notebook *objNotebook) {
             (WPARAM)objNotebook->baseSelected, (LPARAM)0);
 
         ChangeFileLocation(objNotebook, objNotebook->currentFile);
-        objNotebook->fileHandle = CreateFile(objNotebook->fileLocation, 
-            GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_ALWAYS,
-            FILE_ATTRIBUTE_NORMAL, NULL);
-
-        if (objNotebook->fileHandle != INVALID_HANDLE_VALUE) {
-            objNotebook->textLength = 
-                GetWindowTextLength(objNotebook->editNotes);
-
-            if (objNotebook->textLength > MAX_ARRAY_LENGTH*4-1) {
-                objNotebook->textLength = MAX_ARRAY_LENGTH*4-1;
-            }
-            GetWindowText(objNotebook->editNotes, objNotebook->fileContents, 
-                objNotebook->textLength+1);
-            WriteFile(objNotebook->fileHandle, objNotebook->fileContents, 
-                objNotebook->textLength, NULL, NULL);
-
-            CloseHandle(objNotebook->fileHandle);
-
-        } else {
-            MessageBox(objNotebook->editNotes, 
-                "Writing to the file has failed.",
-                "Unknown Error", MB_OK);
-            objNotebook->fileHandle = CreateFile("tmp.txt", 
-                GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, 
-                OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-
-            if (objNotebook->fileHandle != INVALID_HANDLE_VALUE) {
-                objNotebook->textLength = 
-                    GetWindowTextLength(objNotebook->editNotes);
-                if (objNotebook->textLength > MAX_ARRAY_LENGTH*4-1) {
-                    objNotebook->textLength = MAX_ARRAY_LENGTH*4-1;
-                }
-                GetWindowText(objNotebook->editNotes, objNotebook->fileContents, 
-                    objNotebook->textLength+1);
-                WriteFile(objNotebook->fileHandle, objNotebook->fileContents, 
-                    objNotebook->textLength, NULL, NULL);
-
-                CloseHandle(objNotebook->fileHandle);
-
-                MessageBox(objNotebook->editNotes, 
-                    "File has been saved in the toolkit's main directory, alongside the exe file.",
-                    "Temporary File Created", MB_OK);
-
-            } else {
-                MessageBox(objNotebook->editNotes, objNotebook->fileContents, 
-                    "Copy your text and save manually.", MB_OK);
-            }
-        }
-    } else {
-        objNotebook->fileHandle = CreateFile(objNotebook->tmpFileLocation, 
-            GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_ALWAYS,
-            FILE_ATTRIBUTE_NORMAL, NULL);
-
-        if (objNotebook->fileHandle != INVALID_HANDLE_VALUE) {
-            objNotebook->textLength = GetWindowTextLength(objNotebook->editNotes);
-            
-            if (objNotebook->textLength > MAX_ARRAY_LENGTH*4-1) {
-                objNotebook->textLength = MAX_ARRAY_LENGTH*4-1;
-            }
-            GetWindowText(objNotebook->editNotes, objNotebook->fileContents, 
-                objNotebook->textLength+1);
-            WriteFile(objNotebook->fileHandle, objNotebook->fileContents, 
-                objNotebook->textLength, NULL, NULL);
-            CloseHandle(objNotebook->fileHandle);
-            MoveFileEx(objNotebook->tmpFileLocation, objNotebook->fileLocation, 
-                MOVEFILE_REPLACE_EXISTING);
-        } else {
-            MessageBox(objNotebook->editNotes, 
-                "Writing to the file has failed.",
-                "Unknown Error", MB_OK);
-            objNotebook->fileHandle = CreateFile("tmp.txt", 
-                GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, 
-                OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-
-            if (objNotebook->fileHandle != INVALID_HANDLE_VALUE) {
-                objNotebook->textLength = 
-                    GetWindowTextLength(objNotebook->editNotes);
-                if (objNotebook->textLength > MAX_ARRAY_LENGTH*4-1) {
-                    objNotebook->textLength = MAX_ARRAY_LENGTH*4-1;
-                }
-                GetWindowText(objNotebook->editNotes, objNotebook->fileContents, 
-                    objNotebook->textLength+1);
-                WriteFile(objNotebook->fileHandle, objNotebook->fileContents, 
-                    objNotebook->textLength, NULL, NULL);
-
-                CloseHandle(objNotebook->fileHandle);
-
-                MessageBox(objNotebook->editNotes, 
-                    "File has been saved in the toolkit's main directory, alongside the exe file.",
-                    "Temporary File Created", MB_OK);
-
-            } else {
-                MessageBox(objNotebook->editNotes, objNotebook->fileContents, 
-                    "Copy your text and save manually.", MB_OK);
-            }
-        }
     }
+    WriteCurrentFile(objNotebook);
 
     if (!DestroyWindow(objNotebook->comboFiles)) {
         Result = -1;

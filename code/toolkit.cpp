@@ -605,141 +605,141 @@ void ConvertDecimalToAscii(char *Result, char *given) {
 	int i = 0;
 
 	while (token != NULL && i < MAX_ARRAY_LENGTH) {
-		if (strstr(token,"32") != NULL) {
+		if (strstr(token, "32") != NULL) {
 			Result[i] = ' ';
-		} else if (strstr(token,"33") != NULL) {
+		} else if (strstr(token, "33") != NULL) {
 			Result[i] = '!';
-		} else if (strstr(token,"34") != NULL) {
+		} else if (strstr(token, "34") != NULL) {
 			Result[i] = '\"';
-		} else if (strstr(token,"35") != NULL) {
+		} else if (strstr(token, "35") != NULL) {
 			Result[i] = '#';
-		} else if (strstr(token,"36") != NULL) {
+		} else if (strstr(token, "36") != NULL) {
 			Result[i] = '$';
-		} else if (strstr(token,"37") != NULL) {
+		} else if (strstr(token, "37") != NULL) {
 			Result[i] = '%';
-		} else if (strstr(token,"38") != NULL) {
+		} else if (strstr(token, "38") != NULL) {
 			Result[i] = '&';
-		} else if (strstr(token,"39") != NULL) {
+		} else if (strstr(token, "39") != NULL) {
 			Result[i] = '\'';
-		} else if (strstr(token,"40") != NULL) {
+		} else if (strstr(token, "40") != NULL) {
 			Result[i] = '(';
-		} else if (strstr(token,"41") != NULL) {
+		} else if (strstr(token, "41") != NULL) {
 			Result[i] = ')';
-		} else if (strstr(token,"42") != NULL) {
+		} else if (strstr(token, "42") != NULL) {
 			Result[i] = '*';
-		} else if (strstr(token,"43") != NULL) {
+		} else if (strstr(token, "43") != NULL) {
 			Result[i] = '+';
-		} else if (strstr(token,"44") != NULL) {
+		} else if (strstr(token, "44") != NULL) {
 			Result[i] = ',';
-		} else if (strstr(token,"45") != NULL) {
+		} else if (strstr(token, "45") != NULL) {
 			Result[i] = '-';
-		} else if (strstr(token,"46") != NULL) {
+		} else if (strstr(token, "46") != NULL) {
 			Result[i] = '.';
-		} else if (strstr(token,"47") != NULL) {
+		} else if (strstr(token, "47") != NULL) {
 			Result[i] = '/';
-		} else if (strstr(token,"48") != NULL) {
+		} else if (strstr(token, "48") != NULL) {
 			Result[i] = '0';
-		} else if (strstr(token,"49") != NULL) {
+		} else if (strstr(token, "49") != NULL) {
 			Result[i] = '1';
-		} else if (strstr(token,"50") != NULL) {
+		} else if (strstr(token, "50") != NULL) {
 			Result[i] = '2';
-		} else if (strstr(token,"51") != NULL) {
+		} else if (strstr(token, "51") != NULL) {
 			Result[i] = '3';
-		} else if (strstr(token,"52") != NULL) {
+		} else if (strstr(token, "52") != NULL) {
 			Result[i] = '4';
-		} else if (strstr(token,"53") != NULL) {
+		} else if (strstr(token, "53") != NULL) {
 			Result[i] = '5';
-		} else if (strstr(token,"54") != NULL) {
+		} else if (strstr(token, "54") != NULL) {
 			Result[i] = '6';
-		} else if (strstr(token,"55") != NULL) {
+		} else if (strstr(token, "55") != NULL) {
 			Result[i] = '7';
-		} else if (strstr(token,"56") != NULL) {
+		} else if (strstr(token, "56") != NULL) {
 			Result[i] = '8';
-		} else if (strstr(token,"57") != NULL) {
+		} else if (strstr(token, "57") != NULL) {
 			Result[i] = '9';
-		} else if (strstr(token,"58") != NULL) {
+		} else if (strstr(token, "58") != NULL) {
 			Result[i] = ':';
-		} else if (strstr(token,"59") != NULL) {
+		} else if (strstr(token, "59") != NULL) {
 			Result[i] = ';';
-		} else if (strstr(token,"60") != NULL) {
+		} else if (strstr(token, "60") != NULL) {
 			Result[i] = '<';
-		} else if (strstr(token,"61") != NULL) {
+		} else if (strstr(token, "61") != NULL) {
 			Result[i] = '=';
-		} else if (strstr(token,"62") != NULL) {
+		} else if (strstr(token, "62") != NULL) {
 			Result[i] = '>';
-		} else if (strstr(token,"63") != NULL) {
+		} else if (strstr(token, "63") != NULL) {
 			Result[i] = '?';
-		} else if (strstr(token,"64") != NULL) {
+		} else if (strstr(token, "64") != NULL) {
 			Result[i] = '@';
-		} else if (strstr(token,"65") != NULL) {
+		} else if (strstr(token, "65") != NULL) {
 			Result[i] = 'A';
-		} else if (strstr(token,"66") != NULL) {
+		} else if (strstr(token, "66") != NULL) {
 			Result[i] = 'B';
-		} else if (strstr(token,"67") != NULL) {
+		} else if (strstr(token, "67") != NULL) {
 			Result[i] = 'C';
-		} else if (strstr(token,"68") != NULL) {
+		} else if (strstr(token, "68") != NULL) {
 			Result[i] = 'D';
-		} else if (strstr(token,"69") != NULL) {
+		} else if (strstr(token, "69") != NULL) {
 			Result[i] = 'E';
-		} else if (strstr(token,"70") != NULL) {
+		} else if (strstr(token, "70") != NULL) {
 			Result[i] = 'F';
-		} else if (strstr(token,"71") != NULL) {
+		} else if (strstr(token, "71") != NULL) {
 			Result[i] = 'G';
-		} else if (strstr(token,"72") != NULL) {
+		} else if (strstr(token, "72") != NULL) {
 			Result[i] = 'H';
-		} else if (strstr(token,"73") != NULL) {
+		} else if (strstr(token, "73") != NULL) {
 			Result[i] = 'I';
-		} else if (strstr(token,"74") != NULL) {
+		} else if (strstr(token, "74") != NULL) {
 			Result[i] = 'J';
-		} else if (strstr(token,"75") != NULL) {
+		} else if (strstr(token, "75") != NULL) {
 			Result[i] = 'K';
-		} else if (strstr(token,"76") != NULL) {
+		} else if (strstr(token, "76") != NULL) {
 			Result[i] = 'L';
-		} else if (strstr(token,"77") != NULL) {
+		} else if (strstr(token, "77") != NULL) {
 			Result[i] = 'M';
-		} else if (strstr(token,"78") != NULL) {
+		} else if (strstr(token, "78") != NULL) {
 			Result[i] = 'N';
-		} else if (strstr(token,"79") != NULL) {
+		} else if (strstr(token, "79") != NULL) {
 			Result[i] = 'O';
-		} else if (strstr(token,"80") != NULL) {
+		} else if (strstr(token, "80") != NULL) {
 			Result[i] = 'P';
-		} else if (strstr(token,"81") != NULL) {
+		} else if (strstr(token, "81") != NULL) {
 			Result[i] = 'Q';
-		} else if (strstr(token,"82") != NULL) {
+		} else if (strstr(token, "82") != NULL) {
 			Result[i] = 'R';
-		} else if (strstr(token,"83") != NULL) {
+		} else if (strstr(token, "83") != NULL) {
 			Result[i] = 'S';
-		} else if (strstr(token,"84") != NULL) {
+		} else if (strstr(token, "84") != NULL) {
 			Result[i] = 'T';
-		} else if (strstr(token,"85") != NULL) {
+		} else if (strstr(token, "85") != NULL) {
 			Result[i] = 'U';
-		} else if (strstr(token,"86") != NULL) {
+		} else if (strstr(token, "86") != NULL) {
 			Result[i] = 'V';
-		} else if (strstr(token,"87") != NULL) {
+		} else if (strstr(token, "87") != NULL) {
 			Result[i] = 'W';
-		} else if (strstr(token,"88") != NULL) {
+		} else if (strstr(token, "88") != NULL) {
 			Result[i] = 'X';
-		} else if (strstr(token,"89") != NULL) {
+		} else if (strstr(token, "89") != NULL) {
 			Result[i] = 'Y';
-		} else if (strstr(token,"90") != NULL) {
+		} else if (strstr(token, "90") != NULL) {
 			Result[i] = 'Z';
-		} else if (strstr(token,"91") != NULL) {
+		} else if (strstr(token, "91") != NULL) {
 			Result[i] = '[';
-		} else if (strstr(token,"92") != NULL) {
+		} else if (strstr(token, "92") != NULL) {
 			Result[i] = '\\';
-		} else if (strstr(token,"93") != NULL) {
+		} else if (strstr(token, "93") != NULL) {
 			Result[i] = ']';
-		} else if (strstr(token,"94") != NULL) {
+		} else if (strstr(token, "94") != NULL) {
 			Result[i] = '^';
-		} else if (strstr(token,"95") != NULL) {
+		} else if (strstr(token, "95") != NULL) {
 			Result[i] = '_';
-		} else if (strstr(token,"96") != NULL) {
+		} else if (strstr(token, "96") != NULL) {
 			Result[i] = '`';
-		} else if (strstr(token,"97") != NULL) {
+		} else if (strstr(token, "97") != NULL) {
 			Result[i] = 'a';
-		} else if (strstr(token,"98") != NULL) {
+		} else if (strstr(token, "98") != NULL) {
 			Result[i] = 'b';
-		} else if (strstr(token,"99") != NULL) {
+		} else if (strstr(token, "99") != NULL) {
 			Result[i] = 'c';
 		} else if (strstr(token, "100") != NULL) {
 			Result[i] = 'd';
@@ -811,244 +811,249 @@ void ConvertDecimalToAscii(char *Result, char *given) {
 // Stores the converted text into the first given char *
 // Modifies the second given char * with strtok
 void ConvertHexToAscii(char *Result, char *given) {
-	char *token = strtok(given, DELIM);
-	int i = 0;
-
-	while (token != NULL && i < MAX_ARRAY_LENGTH) {
-		if (strstr(token, "20") != NULL) {
-			Result[i] = ' ';
-		} else if (strstr(token, "21") != NULL) {
-			Result[i] = '!';
-		} else if (strstr(token, "22") != NULL) {
-			Result[i] = '\"';
-		} else if (strstr(token, "23") != NULL) {
-			Result[i] = '#';
-		} else if (strstr(token, "24") != NULL) {
-			Result[i] = '$';
-		} else if (strstr(token, "25") != NULL) {
-			Result[i] = '%';
-		} else if (strstr(token, "26") != NULL) {
-			Result[i] = '&';
-		} else if (strstr(token, "27") != NULL) {
-			Result[i] = '\'';
-		} else if (strstr(token, "28") != NULL) {
-			Result[i] = '(';
-		} else if (strstr(token, "29") != NULL) {
-			Result[i] = ')';
-		} else if (strstr(token, "2A") != NULL ||
-				strstr(token, "2a") != NULL) {
-			Result[i] = '*';
-		} else if (strstr(token, "2B") != NULL ||
-				strstr(token, "2b") != NULL) {
-			Result[i] = '+';
-		} else if (strstr(token, "2C") != NULL ||
-				strstr(token, "2c") != NULL) {
-			Result[i] = ',';
-		} else if (strstr(token, "2D") != NULL ||
-				strstr(token, "2d") != NULL) {
-			Result[i] = '-';
-		} else if (strstr(token, "2E") != NULL ||
-				strstr(token, "2e") != NULL) {
-			Result[i] = '.';
-		} else if (strstr(token, "2F") != NULL ||
-				strstr(token, "2f") != NULL) {
-			Result[i] = '/';
-		} else if (strstr(token, "30") != NULL) {
-			Result[i] = '0';
-		} else if (strstr(token, "31") != NULL) {
-			Result[i] = '1';
-		} else if (strstr(token, "32") != NULL) {
-			Result[i] = '2';
-		} else if (strstr(token, "33") != NULL) {
-			Result[i] = '3';
-		} else if (strstr(token, "34") != NULL) {
-			Result[i] = '4';
-		} else if (strstr(token, "35") != NULL) {
-			Result[i] = '5';
-		} else if (strstr(token, "36") != NULL) {
-			Result[i] = '6';
-		} else if (strstr(token, "37") != NULL) {
-			Result[i] = '7';
-		} else if (strstr(token, "38") != NULL) {
-			Result[i] = '8';
-		} else if (strstr(token, "39") != NULL) {
-			Result[i] = '9';
-		} else if (strstr(token, "3A") != NULL ||
-				strstr(token, "3a") != NULL) {
-			Result[i] = ':';
-		} else if (strstr(token, "3B") != NULL ||
-				strstr(token, "3b") != NULL) {
-			Result[i] = ';';
-		} else if (strstr(token, "3C") != NULL ||
-				strstr(token, "3c") != NULL) {
-			Result[i] = '<';
-		} else if (strstr(token, "3D") != NULL ||
-				strstr(token, "3d") != NULL) {
-			Result[i] = '=';
-		} else if (strstr(token, "3E") != NULL ||
-				strstr(token, "3e") != NULL) {
-			Result[i] = '>';
-		} else if (strstr(token, "3F") != NULL ||
-				strstr(token, "3f") != NULL) {
-			Result[i] = '?';
-		} else if (strstr(token, "40") != NULL) {
-			Result[i] = '@';
-		} else if (strstr(token, "41") != NULL) {
-			Result[i] = 'A';
-		} else if (strstr(token, "42") != NULL) {
-			Result[i] = 'B';
-		} else if (strstr(token, "43") != NULL) {
-			Result[i] = 'C';
-		} else if (strstr(token, "44") != NULL) {
-			Result[i] = 'D';
-		} else if (strstr(token, "45") != NULL) {
-			Result[i] = 'E';
-		} else if (strstr(token, "46") != NULL) {
-			Result[i] = 'F';
-		} else if (strstr(token, "47") != NULL) {
-			Result[i] = 'G';
-		} else if (strstr(token, "48") != NULL) {
-			Result[i] = 'H';
-		} else if (strstr(token, "49") != NULL) {
-			Result[i] = 'I';
-		} else if (strstr(token, "4A") != NULL ||
-				strstr(token, "4a") != NULL) {
-			Result[i] = 'J';
-		} else if (strstr(token, "4B") != NULL ||
-				strstr(token, "4b") != NULL) {
-			Result[i] = 'K';
-		} else if (strstr(token, "4C") != NULL ||
-				strstr(token, "4c") != NULL) {
-			Result[i] = 'L';
-		} else if (strstr(token, "4D") != NULL ||
-				strstr(token, "4d") != NULL) {
-			Result[i] = 'M';
-		} else if (strstr(token, "4E") != NULL ||
-				strstr(token, "4e") != NULL) {
-			Result[i] = 'N';
-		} else if (strstr(token, "4F") != NULL ||
-				strstr(token, "4f") != NULL) {
-			Result[i] = 'O';
-		} else if (strstr(token, "50") != NULL) {
-			Result[i] = 'P';
-		} else if (strstr(token, "51") != NULL) {
-			Result[i] = 'Q';
-		} else if (strstr(token, "52") != NULL) {
-			Result[i] = 'R';
-		} else if (strstr(token, "53") != NULL) {
-			Result[i] = 'S';
-		} else if (strstr(token, "54") != NULL) {
-			Result[i] = 'T';
-		} else if (strstr(token, "55") != NULL) {
-			Result[i] = 'U';
-		} else if (strstr(token, "56") != NULL) {
-			Result[i] = 'V';
-		} else if (strstr(token, "57") != NULL) {
-			Result[i] = 'W';
-		} else if (strstr(token, "58") != NULL) {
-			Result[i] = 'X';
-		} else if (strstr(token, "59") != NULL) {
-			Result[i] = 'Y';
-		} else if (strstr(token, "5A") != NULL ||
-				strstr(token, "5a") != NULL) {
-			Result[i] = 'Z';
-		} else if (strstr(token, "5B") != NULL ||
-				strstr(token, "5b") != NULL) {
-			Result[i] = '[';
-		} else if (strstr(token, "5C") != NULL ||
-				strstr(token, "5c") != NULL) {
-			Result[i] = '\\';
-		} else if (strstr(token, "5D") != NULL ||
-				strstr(token, "5d") != NULL) {
-			Result[i] = ']';
-		} else if (strstr(token, "5E") != NULL ||
-				strstr(token, "5e") != NULL) {
-			Result[i] = '^';
-		} else if (strstr(token, "5F") != NULL ||
-				strstr(token, "5f") != NULL) {
-			Result[i] = '_';
-		} else if (strstr(token, "60") != NULL) {
-			Result[i] = '`';
-		} else if (strstr(token, "61") != NULL) {
-			Result[i] = 'a';
-		} else if (strstr(token, "62") != NULL) {
-			Result[i] = 'b';
-		} else if (strstr(token, "63") != NULL) {
-			Result[i] = 'c';
-		} else if (strstr(token, "64") != NULL) {
-			Result[i] = 'd';
-		} else if (strstr(token, "65") != NULL) {
-			Result[i] = 'e';
-		} else if (strstr(token, "66") != NULL) {
-			Result[i] = 'f';
-		} else if (strstr(token, "67") != NULL) {
-			Result[i] = 'g';
-		} else if (strstr(token, "68") != NULL) {
-			Result[i] = 'h';
-		} else if (strstr(token, "69") != NULL) {
-			Result[i] = 'i';
-		} else if (strstr(token, "6A") != NULL ||
-				strstr(token, "6a") != NULL) {
-			Result[i] = 'j';
-		} else if (strstr(token, "6B") != NULL ||
-				strstr(token, "6b") != NULL) {
-			Result[i] = 'k';
-		} else if (strstr(token, "6C") != NULL ||
-				strstr(token, "6c") != NULL) {
-			Result[i] = 'l';
-		} else if (strstr(token, "6D") != NULL ||
-				strstr(token, "6d") != NULL) {
-			Result[i] = 'm';
-		} else if (strstr(token, "6E") != NULL ||
-				strstr(token, "6e") != NULL) {
-			Result[i] = 'n';
-		} else if (strstr(token, "6F") != NULL ||
-				strstr(token, "6f") != NULL) {
-			Result[i] = 'o';
-		} else if (strstr(token, "70") != NULL) {
-			Result[i] = 'p';
-		} else if (strstr(token, "71") != NULL) {
-			Result[i] = 'q';
-		} else if (strstr(token, "72") != NULL) {
-			Result[i] = 'r';
-		} else if (strstr(token, "73") != NULL) {
-			Result[i] = 's';
-		} else if (strstr(token, "74") != NULL) {
-			Result[i] = 't';
-		} else if (strstr(token, "75") != NULL) {
-			Result[i] = 'u';
-		} else if (strstr(token, "76") != NULL) {
-			Result[i] = 'v';
-		} else if (strstr(token, "77") != NULL) {
-			Result[i] = 'w';
-		} else if (strstr(token, "78") != NULL) {
-			Result[i] = 'x';
-		} else if (strstr(token, "79") != NULL) {
-			Result[i] = 'y';
-		} else if (strstr(token, "7A") != NULL ||
-				strstr(token, "7a") != NULL) {
-			Result[i] = 'z';
-		} else if (strstr(token, "7B") != NULL ||
-				strstr(token, "7b") != NULL) {
-			Result[i] = '{';
-		} else if (strstr(token, "7C") != NULL ||
-				strstr(token, "7c") != NULL) {
-			Result[i] = '|';
-		} else if (strstr(token, "7D") != NULL ||
-				strstr(token, "7d") != NULL) {
-			Result[i] = '}';
-		} else if (strstr(token, "7E") != NULL ||
-				strstr(token, "7e") != NULL) {
-			Result[i] = '~';
-		} else {
-			Result[i] = ' ';
-		}
-		token = strtok(NULL, DELIM);
-		i++;
+	int resultIndex = 0;
+	int givenIndex = 0;
+	char digit1 = given[givenIndex];
+	char digit2 = '\0';
+	if (digit1 != '\0') {
+		digit2 = given[givenIndex+1];
 	}
 
-	if (i < MAX_ARRAY_LENGTH) {
-		Result[i] = '\0';
+	while (digit1 != '\0' && digit2 != '\0' && 
+		   resultIndex < MAX_ARRAY_LENGTH) {
+		if (digit1 == '2') {
+			if (digit2 == '0') {
+				Result[resultIndex] = ' ';
+			} else if (digit2 == '1') {
+				Result[resultIndex] = '!';
+			} else if (digit2 == '2') {
+				Result[resultIndex] = '\"';
+			} else if (digit2 == '3') {
+				Result[resultIndex] = '#';
+			} else if (digit2 == '4') {
+				Result[resultIndex] = '$';
+			} else if (digit2 == '5') {
+				Result[resultIndex] = '%';
+			} else if (digit2 == '6') {
+				Result[resultIndex] = '&';
+			} else if (digit2 == '7') {
+				Result[resultIndex] = '\'';
+			} else if (digit2 == '8') {
+				Result[resultIndex] = '(';
+			} else if (digit2 == '9') {
+				Result[resultIndex] = ')';
+			} else if (digit2 == 'A' || digit2 == 'a') {
+				Result[resultIndex] = '*';
+			} else if (digit2 == 'B' ||	digit2 == 'b') {
+				Result[resultIndex] = '+';
+			} else if (digit2 == 'C' ||	digit2 == 'c') {
+				Result[resultIndex] = ',';
+			} else if (digit2 == 'D' ||	digit2 == 'd') {
+				Result[resultIndex] = '-';
+			} else if (digit2 == 'E' ||	digit2 == 'e') {
+				Result[resultIndex] = '.';
+			} else if (digit2 == 'F' ||	digit2 == 'f') {
+				Result[resultIndex] = '/';
+			} else {
+				Result[resultIndex] = ' ';
+			}
+		} else if (digit1 == '3') {
+			if (digit2 == '0') {
+				Result[resultIndex] = '0';
+			} else if (digit2 == '1') {
+				Result[resultIndex] = '1';
+			} else if (digit2 == '2') {
+				Result[resultIndex] = '2';
+			} else if (digit2 == '3') {
+				Result[resultIndex] = '3';
+			} else if (digit2 == '4') {
+				Result[resultIndex] = '4';
+			} else if (digit2 == '5') {
+				Result[resultIndex] = '5';
+			} else if (digit2 == '6') {
+				Result[resultIndex] = '6';
+			} else if (digit2 == '7') {
+				Result[resultIndex] = '7';
+			} else if (digit2 == '8') {
+				Result[resultIndex] = '8';
+			} else if (digit2 == '9') {
+				Result[resultIndex] = '9';
+			} else if (digit2 == 'A' ||	digit2 == 'a') {
+				Result[resultIndex] = ':';
+			} else if (digit2 == 'B' ||	digit2 == 'b') {
+				Result[resultIndex] = ';';
+			} else if (digit2 == 'C' ||	digit2 == 'c') {
+				Result[resultIndex] = '<';
+			} else if (digit2 == 'D' ||	digit2 == 'd') {
+				Result[resultIndex] = '=';
+			} else if (digit2 == 'E' ||	digit2 == 'e') {
+				Result[resultIndex] = '>';
+			} else if (digit2 == 'F' ||	digit2 == 'f') {
+				Result[resultIndex] = '?';
+			} else {
+				Result[resultIndex] = ' ';
+			}
+		} else if (digit1 == '4') {
+			if (digit2 == '0') {
+				Result[resultIndex] = '@';
+			} else if (digit2 == '1') {
+				Result[resultIndex] = 'A';
+			} else if (digit2 == '2') {
+				Result[resultIndex] = 'B';
+			} else if (digit2 == '3') {
+				Result[resultIndex] = 'C';
+			} else if (digit2 == '4') {
+				Result[resultIndex] = 'D';
+			} else if (digit2 == '5') {
+				Result[resultIndex] = 'E';
+			} else if (digit2 == '6') {
+				Result[resultIndex] = 'F';
+			} else if (digit2 == '7') {
+				Result[resultIndex] = 'G';
+			} else if (digit2 == '8') {
+				Result[resultIndex] = 'H';
+			} else if (digit2 == '9') {
+				Result[resultIndex] = 'I';
+			} else if (digit2 == 'A' ||	digit2 == 'a') {
+				Result[resultIndex] = 'J';
+			} else if (digit2 == 'B' ||	digit2 == 'b') {
+				Result[resultIndex] = 'K';
+			} else if (digit2 == 'C' ||	digit2 == 'c') {
+				Result[resultIndex] = 'L';
+			} else if (digit2 == 'D' ||	digit2 == 'd') {
+				Result[resultIndex] = 'M';
+			} else if (digit2 == 'E' ||	digit2 == 'e') {
+				Result[resultIndex] = 'N';
+			} else if (digit2 == 'F' ||	digit2 == 'f') {
+				Result[resultIndex] = 'O';
+			} else {
+				Result[resultIndex] = ' ';
+			}
+		} else if (digit1 == '5') {
+			if (digit2 == '0') {
+				Result[resultIndex] = 'P';
+			} else if (digit2 == '1') {
+				Result[resultIndex] = 'Q';
+			} else if (digit2 == '2') {
+				Result[resultIndex] = 'R';
+			} else if (digit2 == '3') {
+				Result[resultIndex] = 'S';
+			} else if (digit2 == '4') {
+				Result[resultIndex] = 'T';
+			} else if (digit2 == '5') {
+				Result[resultIndex] = 'U';
+			} else if (digit2 == '6') {
+				Result[resultIndex] = 'V';
+			} else if (digit2 == '7') {
+				Result[resultIndex] = 'W';
+			} else if (digit2 == '8') {
+				Result[resultIndex] = 'X';
+			} else if (digit2 == '9') {
+				Result[resultIndex] = 'Y';
+			} else if (digit2 == 'A' ||	digit2 == 'a') {
+				Result[resultIndex] = 'Z';
+			} else if (digit2 == 'B' ||	digit2 == 'b') {
+				Result[resultIndex] = '[';
+			} else if (digit2 == 'C' ||	digit2 == 'c') {
+				Result[resultIndex] = '\\';
+			} else if (digit2 == 'D' ||	digit2 == 'd') {
+				Result[resultIndex] = ']';
+			} else if (digit2 == 'E' ||	digit2 == 'e') {
+				Result[resultIndex] = '^';
+			} else if (digit2 == 'F' ||	digit2 == 'f') {
+				Result[resultIndex] = '_';
+			} else {
+				Result[resultIndex] = ' ';
+			}
+		} else if (digit1 == '6') {
+			if (digit2 == '0') {
+				Result[resultIndex] = '`';
+			} else if (digit2 == '1') {
+				Result[resultIndex] = 'a';
+			} else if (digit2 == '2') {
+				Result[resultIndex] = 'b';
+			} else if (digit2 == '3') {
+				Result[resultIndex] = 'c';
+			} else if (digit2 == '4') {
+				Result[resultIndex] = 'd';
+			} else if (digit2 == '5') {
+				Result[resultIndex] = 'e';
+			} else if (digit2 == '6') {
+				Result[resultIndex] = 'f';
+			} else if (digit2 == '7') {
+				Result[resultIndex] = 'g';
+			} else if (digit2 == '8') {
+				Result[resultIndex] = 'h';
+			} else if (digit2 == '9') {
+				Result[resultIndex] = 'i';
+			} else if (digit2 == 'A' ||	digit2 == 'a') {
+				Result[resultIndex] = 'j';
+			} else if (digit2 == 'B' ||	digit2 == 'b') {
+				Result[resultIndex] = 'k';
+			} else if (digit2 == 'C' ||	digit2 == 'c') {
+				Result[resultIndex] = 'l';
+			} else if (digit2 == 'D' ||	digit2 == 'd') {
+				Result[resultIndex] = 'm';
+			} else if (digit2 == 'E' ||	digit2 == 'e') {
+				Result[resultIndex] = 'n';
+			} else if (digit2 == 'F' ||	digit2 == 'f') {
+				Result[resultIndex] = 'o';
+			} else {
+				Result[resultIndex] = ' ';
+			}
+		} else if (digit1 == '7') {
+			if (digit2 == '0') {
+				Result[resultIndex] = 'p';
+			} else if (digit2 == '1') {
+				Result[resultIndex] = 'q';
+			} else if (digit2 == '2') {
+				Result[resultIndex] = 'r';
+			} else if (digit2 == '3') {
+				Result[resultIndex] = 's';
+			} else if (digit2 == '4') {
+				Result[resultIndex] = 't';
+			} else if (digit2 == '5') {
+				Result[resultIndex] = 'u';
+			} else if (digit2 == '6') {
+				Result[resultIndex] = 'v';
+			} else if (digit2 == '7') {
+				Result[resultIndex] = 'w';
+			} else if (digit2 == '8') {
+				Result[resultIndex] = 'x';
+			} else if (digit2 == '9') {
+				Result[resultIndex] = 'y';
+			} else if (digit2 == 'A' ||	digit2 == 'a') {
+				Result[resultIndex] = 'z';
+			} else if (digit2 == 'B' ||	digit2 == 'b') {
+				Result[resultIndex] = '{';
+			} else if (digit2 == 'C' ||	digit2 == 'c') {
+				Result[resultIndex] = '|';
+			} else if (digit2 == 'D' ||	digit2 == 'd') {
+				Result[resultIndex] = '}';
+			} else if (digit2 == 'E' ||	digit2 == 'e') {
+				Result[resultIndex] = '~';
+			} else {
+				Result[resultIndex] = ' ';
+			}
+		} else {
+			Result[resultIndex] = ' ';
+		}
+
+		resultIndex++;
+		givenIndex += 2;
+		digit1 = given[givenIndex];
+		while (digit1 != '\0' && digit1 != '2' && digit1 != '3' && 
+			digit1 != '4' && digit1 != '5' && digit1 != '6' && digit1 != '7') {
+			givenIndex++;
+			digit1 = given[givenIndex];
+		}
+		if (digit1 != '\0') {
+			digit2 = given[givenIndex+1];
+		}
+	}
+
+	if (resultIndex < MAX_ARRAY_LENGTH) {
+		Result[resultIndex] = '\0';
 	}
 }
 

@@ -88,7 +88,7 @@ LRESULT PaintCipherWindow(HWND *hPWnd, Cipher *objCipher) {
     AdjustRectToWindow(&topRect, hPWnd);
 
     objCipher->editKey = CreateWindowEx(0, "EDIT", "", 
-        baseStyle | WS_TABSTOP, 
+        baseStyle | WS_TABSTOP | ES_AUTOHSCROLL, 
         topRect.left, topRect.bottom+10, TEXTBOXWIDTH, BUTTONHEIGHT, 
         *hPWnd, (HMENU)IDC_EDIT_KEY, GetModuleHandle(NULL), NULL);
     if (objCipher->editKey == NULL) {

@@ -794,8 +794,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
                         objNumbers.userInput, objNumbers.inputLength);
                     GetWindowText(objNumbers.editNumber, 
                         objNumbers.copyUserInput, objNumbers.inputLength);
-                    objNumbers.userInput[objNumbers.inputLength] = '\0';
-                    objNumbers.copyUserInput[objNumbers.inputLength] = '\0';
+                    objNumbers.userInput[objNumbers.inputLength-1] = '\0';
+                    objNumbers.copyUserInput[objNumbers.inputLength-1] = '\0';
 
                     if (objNumbers.baseSelected == 0) {
                         ConvertBinaryToAscii(objNumbers.asciiOutput, 
@@ -836,8 +836,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
                         objMorse.userInput, objMorse.inputLength);
                     GetWindowText(objMorse.editMorse, 
                         objMorse.copyUserInput, objMorse.inputLength);
-                    objMorse.userInput[objMorse.inputLength] = '\0';
-                    objMorse.copyUserInput[objMorse.inputLength] = '\0';
+                    objMorse.userInput[objMorse.inputLength-1] = '\0';
+                    objMorse.copyUserInput[objMorse.inputLength-1] = '\0';
 
                     ConvertMorseToAscii(objMorse.asciiOutput,
                         objMorse.copyUserInput);
@@ -1028,8 +1028,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
 
                     SendMessage(objNotebook.comboFiles, (UINT)CB_DELETESTRING, 
                         (WPARAM)objNotebook.baseSelected, 0);
-                    ChangeFileLocation(&objNotebook, objNotebook.currentFile);
-                    DeleteFile(objNotebook.fileLocation);
+                    sprintf(buffer, "%s", objNotebook.currentFile);
 
                     objNotebook.baseSelected = 0;
                     SendMessage(objNotebook.comboFiles, CB_SETCURSEL,
@@ -1037,6 +1036,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
                     WPARAM send = MAKEWPARAM(IDC_COMBO_FILELIST, CBN_SELENDOK);
                     SendMessage(hwnd, WM_COMMAND, send, 
                         (LPARAM)objNotebook.comboFiles);
+
+                    ChangeFileLocation(&objNotebook, buffer);
+                    DeleteFile(objNotebook.fileLocation);
+                    ChangeFileLocation(&objNotebook, objNotebook.currentFile);
                 }
 
             } else if ((HWND)lParam == tabHome && 
@@ -1158,6 +1161,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
                             CB_GETCURSEL, 0, 0);
 
             } else if ((HWND)lParam == objNotebook.comboFiles) {
+                WriteCurrentFile(&objNotebook);
                 objNotebook.baseSelected = 
                     (int)SendMessage(objNotebook.comboFiles, 
                             CB_GETCURSEL, 0, 0);
@@ -1264,7 +1268,7 @@ int CALLBACK WinMain(HINSTANCE hInst,
     SetRect(&rect, 0, 0, CLIENT_WIDTH, CLIENT_HEIGHT);
     AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-    hMain = CreateWindowEx(0, wc.lpszClassName, "Canonn Toolkit  v1.01", 
+    hMain = CreateWindowEx(0, wc.lpszClassName, "Canonn Toolkit  v1.02", 
         WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 
         rect.right-rect.left, rect.bottom-rect.top, NULL, NULL, hInst, NULL);
 
