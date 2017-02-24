@@ -8,6 +8,7 @@ Included in this toolkit is the following:
 ### Numbers to ASCII converter
 
 - Note that the numbers for each character must be separated by spaces, eg. 48 45 4c 4c 4f -> HELLO
+	(although hex values can be written together, eg 48454c4c4f -> HELLO)
 
 ### Morse to ASCII converter
 
